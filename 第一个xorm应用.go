@@ -22,7 +22,7 @@ type User struct {
 
 func init() {
 	var err error
-	engine, err = xorm.NewEngine("mysql", "root:2003925liu@/liu_xorm?charset=utf8")
+	engine, err = xorm.NewEngine("mysql", "root:123456@/liu_xorm?charset=utf8")
 	if err != nil {
 		fmt.Printf("err: %v\n", err)
 	} else {
@@ -53,5 +53,5 @@ func instr() {
 }
 
 func main() {
-	instr()
+	//instr()
 }
