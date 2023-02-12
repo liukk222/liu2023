@@ -55,12 +55,12 @@ func UpdateUser(c *gin.Context) {
 	u, _ := find(id)
 	name := c.Param("name")
 
-	na := strconv.Quote(name) //nc := strconv.QuoteToASCII(name) 与na := strconv.Quote(name)一样
-	var nc string = na
-	nc = strings.Trim(na, `"`)
+	na := strconv.Quote(name)  //nc := strconv.QuoteToASCII(name) 与na := strconv.Quote(name)一样，返回string类型
+	var nc string = na         //na=""字符""
+	nc = strings.Trim(na, `"`) //去除"",变为"字符"
 	u.Name = nc
 	//u.Name = "修改的Name"
-	c.JSON(200, u)
+	c.JSON(200, u) //json中才为"字符"
 }
 func FindUser(c *gin.Context) {
 	uid := c.Param("uid")
@@ -72,8 +72,8 @@ func main() {
 	e := gin.Default()
 	a := User{4, "liu", 20}
 	as := Usersl(a)
-	e.POST("/user/", as.AddUser)
-	e.PUT("/user/:uid/:name", UpdateUser)
+	e.POST("/user/", as.AddUser)          //通过接受者将main中的User{}传入AddUser函数中，方便进行相关操作。
+	e.PUT("/user/:uid/:name", UpdateUser) //能在PUT中修改name
 	e.GET("/user/:uid", FindUser)
 	e.DELETE("/user/:uid", DelUser)
 	e.Run(":8888")
