@@ -25,10 +25,13 @@ func TestString(c *gin.Context) {
 }
 func main() {
 	e := gin.Default()
-	e.GET("/test_json", TestJson)
-	e.GET("/test_xml", TestXML)
+	// e.GET("/test_json", TestJson)
+	// e.GET("/test_xml", TestXML)
+	// e.LoadHTMLGlob("templates/*")
+	// e.GET("/test_html", TestHtml)
+	// e.GET("/test_string", TestString)
 	e.LoadHTMLGlob("templates/*")
-	e.GET("/test_html", TestHtml)
-	e.GET("/test_string", TestString)
+	e.Static("/assets", "./assets")
+	e.GET("/hello", TestHtml)
 	e.Run(":8888")
 }
